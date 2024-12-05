@@ -1,7 +1,5 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" lang="ru">
 
-<meta charset="UTF-8">
-<title>Управление пользователями</title>
 <head>
   <meta charset="UTF-8">
   <title> Управление пользователями </title>
@@ -112,6 +110,41 @@
       transition: all 0.3s ease;
     }
   </style>
+
+
+
+
+
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript" th:inline="javascript">
+
+    google.charts.load('current', {'packages':['corechart', 'line']});
+    google.charts.setOnLoadCallback(drawChart);
+
+
+    function drawChart() {
+
+      var data = new google.visualization.DataTable();
+      data.addColumn('string', 'Пользователь');
+      data.addColumn('number', 'Количество');
+      data.addRows([
+        /*[# th:each="row : ${chartData}"]*/
+        [[${row}]],
+        /*[/]*/
+      ]);
+
+      var options = {'title':'Гистограмма пользователей',
+        'width':800,
+        'height':600,
+        orientation: 'horizontal',
+        vAxis: {format: '0'}
+      };
+
+      var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+      chart.draw(data, options);
+    }
+  </script>
+
 </head>
 <body>
 
@@ -192,5 +225,9 @@
       </form>
     </td>
   </tr>
+
+
+
+  <div id="chart_div" class="d-flex justify-content-center"></div>
   </tbody>
 </table>

@@ -238,6 +238,28 @@ public class AppController {
     public String toadminpanel(Model model){
         List<Myappuser> myappuserList = myAppUserService.findAll();
         model.addAttribute("myappuserList", myappuserList);
+
+
+
+        Map<String, Integer> dateMap = new HashMap<>();
+
+        for (Myappuser myappuser : myappuserList) {
+            String dateGood = myappuser.getRole();
+            dateMap.put(dateGood, dateMap.getOrDefault(dateGood, 0) + 1);
+        }
+
+        List<List<Object>> dateCountMap = new ArrayList<>();
+
+        for (Map.Entry<String, Integer> entry : dateMap.entrySet()) {
+            List<Object> subList = new ArrayList<>();
+            subList.add(entry.getKey());
+            subList.add(entry.getValue());
+            dateCountMap.add(subList);
+        }
+
+        model.addAttribute("chartData", dateCountMap);
+
+
         return "adminpanel";
     }
 
