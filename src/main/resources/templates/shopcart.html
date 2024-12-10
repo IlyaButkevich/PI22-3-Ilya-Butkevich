@@ -80,6 +80,7 @@
         </thead>
         <tbody>
         <tr th:each="cart: ${cartList}">
+            <span th:if="${cart.username==un}" >
             <td class="text-black" th:text="${cart.goodname}"></td>
             <td class="text-black" th:text="${cart.price}"></td>
 
@@ -93,6 +94,7 @@
                     }
                 </script>
             </td>
+                </span>
         </tr>
         </tbody>
     </table>

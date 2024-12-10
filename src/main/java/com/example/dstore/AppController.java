@@ -190,6 +190,8 @@ public class AppController {
 
     @RequestMapping("/addtocart/{id}")
     public  String tocart(@PathVariable(name = "id") Long id){
+        String auth = SecurityContextHolder.getContext().getAuthentication().getName();
+
         Goods goods = goodsService.get(id);
         String gn = goods.getGoodname();
         int pr = goods.getPrice();
@@ -201,6 +203,7 @@ public class AppController {
         Basket basket = new Basket();
         basket.setGoodname(gn);
         basket.setPrice(pr);
+        basket.setUsername(auth);
         basketService.save(basket);
         if (currentshop==1){return "redirect:/toshop1";}
         if (currentshop==2){return "redirect:/toshop2";}
@@ -212,6 +215,9 @@ public class AppController {
 
     @RequestMapping("/cartpage")
     public  String tocartpage(Model model){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String un = auth.getName();
+        model.addAttribute("un", un);
         model.addAttribute("cartList", basketService.ListAll());
         return "shopcart";
     }

@@ -12,6 +12,7 @@ public class Basket {
     private String goodname;
     private int price;
 
+    private String username;
 
     protected Basket(){};
 
@@ -33,4 +34,8 @@ public class Basket {
     }
     public  void setPrice(int price){this.price = price;}
 
+    public String getUsername() {
+        return username;
+    }
+    public  void setUsername(String username){this.username = username;}
 }
