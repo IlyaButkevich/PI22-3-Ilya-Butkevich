@@ -230,7 +230,7 @@ public class AppController {
 
     @RequestMapping("/toconfirm")
     public  String toconfirm(){
-        basketService.deleteall();
+        basketService.deletebyuser(SecurityContextHolder.getContext().getAuthentication().getName());
         return "confirm";
     }
 

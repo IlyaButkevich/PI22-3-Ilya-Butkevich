@@ -23,4 +23,5 @@ public class BasketService {
     }
 
     public void deleteall(){repo.deleteAll();}
+    public void deletebyuser(String username){repo.deletebyuser(username);}
 }
