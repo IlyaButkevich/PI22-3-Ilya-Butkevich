@@ -280,8 +280,6 @@ public class AppController {
     }
 
 
-
-
     @Autowired
     private MyAppUserRepository myAppUserRepository;
     @Autowired
